@@ -1,36 +1,34 @@
 # devsecops-exercises
-Integrate Vulnerability Management in DevSecOps cycle
 
+Questa repository nasce per raccogliere gli esercizi e per fornire le istruzioni operative utili ad arrivare preparati al corso *Integrate Vulnerability Management in DevSecOps cycle* 
 
-## Prerequisiti
-
-### Base 
-Per accedere al repository contenente gli esercizi è necessario avere un account GitHub (è free):
+## Prerequisiti Base 
+Per poter effettuare le operazioni richieste negli esercizi è necessario avere un account GitHub (è free):  
 https://github.com/signup
+**Ricordatevi di portare con voi il PC ed il caricabatterie!**
 
-Portare con se il PC e il caricabatterie.
+<br/>
 
+## Prerequisiti Funzionali
 
-### Funzionali
+### Effettuare la fork del repository
 
-#### Effettuare la fork del repository
+Per avere autonomia durante gli esercizi, abbiamo identificato come pratica operativa quella di eseguire la fork del nostro repository di partenza.  
 
-Per avere autonomia durante gli esercizi, abbiamo identificato come pratica operativa quella di eseguire la fork del nostro repository di partenza.
-
-Di seguito gli step necessari per effettuarla una volta che avrete creato l'account GitHub:
-
+Di seguito gli step necessari per effettuarla una volta che avrete creato l'account GitHub:  
 https://docs.github.com/en/get-started/quickstart/fork-a-repo
 
+<br/>
 
 ### Docker Hub
 
-Per eseguire uno degli esercizi è necessario avere un account su docker hub, creare una chiave API di accesso ed infine inserirla nella parte secrets sulla repository che andrete a creare.
+Per eseguire uno degli esercizi è necessario avere un account su docker hub, creare una chiave API di accesso ed infine inserirla nella parte secrets sulla repository che andrete a creare.  
 
-La creazione dell'account è effettuabile al seguente link:
+La creazione dell'account è effettuabile al seguente link:  
 https://hub.docker.com/signup
 
 
-Una volta creato l'account sarà possibile generare un access token, questo è effettuabile seguendo gli step al seguente link:
+Una volta creato l'account sarà possibile generare un access token, questo è effettuabile seguendo gli step al seguente link:  
 https://docs.docker.com/security/for-developers/access-tokens/
 
 
@@ -50,14 +48,16 @@ Per effettuarlo, dovrete effettuare i seguenti passi:
     | **DOCKERHUB_USERNAME** | il vostro utente docker |
     | **DOCKERHUB_PASSWORD**   | la chiave api che avete generato |
 
+<br/>
 
-Come riferimento, ecco la documentazione per la gestione dei secrets di github: https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions
+Come riferimento, ecco la documentazione per la gestione dei secrets di github:  
+https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions
 
+<br/>
 
-
-### Extra
+## Extra
 
 Nel caso abbiate un IDE preferito, potete effettuare la clone della repository di cui avete effettuato il fork, effettuando il setup delle configurazioni del client git come di consueto.
 
-#### Generazione chiave SSH su github
+### Generazione chiave SSH su github
 https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent
