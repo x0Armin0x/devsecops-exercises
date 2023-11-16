@@ -3,10 +3,10 @@ name: "CodeQL"
 #we will launch this actions with a manual trigger, as well when a push is committed or a PR is opened on main branch
 on:
   workflow_dispatch:
-  push:
-    branches: ["main"]
-  pull_request:
-    branches: ["main"]
+  # push:
+  #   branches: ["main"]
+  # pull_request:
+  #   branches: ["main"]
 
 jobs:
   #jobs name and settings
@@ -35,6 +35,7 @@ jobs:
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v2
         with:
+          config-file: ./.github/codeql/codeql-config.yml
           languages: ${{ matrix.language }}
 
       # Build the codebase, codeql offer an autobuild steps for most of his supported languages: https://docs.github.com/en/code-security/code-scanning/creating-an-advanced-setup-for-code-scanning/codeql-code-scanning-for-compiled-languages
