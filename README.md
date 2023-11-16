@@ -5,20 +5,19 @@ Integrate Vulnerability Management in DevSecOps cycle
 ## Prerequisiti
 
 ### Base 
-
-Avere un account github (è free) per clonare il repository contentente gli esercizi: 
+Per accedere al repository contenente gli esercizi è necessario avere un account GitHub (è free):
 https://github.com/signup
 
-Avere un pc e portarlo (assieme al caricabatterie)
+Portare con se il PC e il caricabatterie.
 
 
 ### Funzionali
 
 #### Effettuare la fork del repository
 
-Per avere autonomia durante gli esercizi, abbiamo identificato come pratica operativa eseguire la fork del nostro repository di partenza.
+Per avere autonomia durante gli esercizi, abbiamo identificato come pratica operativa quella di eseguire la fork del nostro repository di partenza.
 
-Di seguito gli step necessari per effettuarla una volta che avete creato l'account GitHub:
+Di seguito gli step necessari per effettuarla una volta che avrete creato l'account GitHub:
 
 https://docs.github.com/en/get-started/quickstart/fork-a-repo
 
@@ -37,29 +36,22 @@ https://docs.docker.com/security/for-developers/access-tokens/
 
 #### Forked Repo docker hub permissions
 
-Una volta eseguito lo step *Docker Hub* potremmo effettuare l'inserimento delle credenziali docker appena generate (**username** + **access token**) sulla nostra repository di cui abbiamo effettuato il fork.
+Una volta eseguito lo step *Docker Hub* dovete effettuare l'inserimento delle credenziali docker appena generate (**username** + **access token**) sulla repository di cui avete effettuato il fork.
 
-Per effettuarlo, una volta aperta la nostra forked repository, si devono effettuare i seguenti passi:
-Cliccare su **Settings** nella navbar superiore a destra.
-Nella nuova pagina cliccare sulla sidebar a sinistra **Secrets and variables** e poi su **Actions** nel menu a tendina appena aperto.
-
-Nella pagina che andrà ad aprirsi cliccare su **New repository secret**, e quindi 
-ed inserire i seguenti valori:
-
+Per effettuarlo, dovrete effettuare i seguenti passi:
+1. Accedere al link della repository di cui avete effettuato la fork (e.g. https://github.com/pluribus-one/devsecops-exercises-1)
+2. Cliccate su **Settings** nella navbar superiore a destra.
+3. Nella nuova pagina, nella sidebar a sinistra, cliccate **Secrets and variables** e successivamente **Actions** nel menu a tendina appena aperto.
+4. Nella nuova pagina, cliccate su **New repository secret**, e compilate la form inserendo i seguenti campi
 
 
-Name:
-DOCKERHUB_USERNAME
-Secret:
-il vostro utente docker
-
-Name:
-DOCKERHUB_PASSWORD
-Secret:
-la chiave api che avete generato
+    | Name | Secret |
+    | :---|---:|
+    | **DOCKERHUB_USERNAME** | il vostro utente docker |
+    | **DOCKERHUB_PASSWORD**   | la chiave api che avete generato |
 
 
-Come riferimento, ecco la documentazione per la gestione dei secrets si github: https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions
+Come riferimento, ecco la documentazione per la gestione dei secrets di github: https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions
 
 
 
