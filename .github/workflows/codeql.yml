@@ -31,7 +31,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      # Setup CodeQL tool, with this predefined step, we are specifying the language of the scan
+      # Setup CodeQL tool, with this setup step, we are specifying the language of the scan, and also some extra arguments in a configuration file
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v2
         with:
