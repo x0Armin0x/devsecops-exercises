@@ -7,6 +7,8 @@ Per poter effettuare le operazioni richieste negli esercizi è necessario avere 
 https://github.com/signup
 **Ricordatevi di portare con voi il PC ed il caricabatterie!**
 
+Per poter fruire al meglio degli strumenti che andremo ad utilizzare assieme nel corso, è altamente consigliato di avere un pc con una distrubuzione Linux, o alternativamente una VM (anche WSL di linux va bene!).
+
 <br/>
 
 ## Prerequisiti Funzionali
