@@ -64,10 +64,8 @@ Nel caso abbiate un IDE preferito, potete effettuare la clone della repository d
 ### Generazione chiave SSH su github
 https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent
 
-
-
 ## External resources
-In this section some of the link of the tools used during the course.
+In questa sezione, i link agli strumenti e alle risorse esterne condivise durante la formazione.
 
 ### Threat Modeling - OWASP threat dragon
 https://github.com/OWASP/threat-dragon
@@ -116,3 +114,8 @@ https://owasp.org/www-project-application-security-verification-standard/
 
 ### OWASP Vulnerable Apps:
 https://owasp.org/www-project-vulnerable-web-applications-directory/
+
+
+# Follow Us - Security News
+Restate aggiornati con le ultime news su temi di cybersecurity, effettuando la subscribe al seguente link:  
+https://davideariu.substack.com/
