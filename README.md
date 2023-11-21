@@ -63,3 +63,56 @@ Nel caso abbiate un IDE preferito, potete effettuare la clone della repository d
 
 ### Generazione chiave SSH su github
 https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent
+
+
+
+## External resources
+In this section some of the link of the tools used during the course.
+
+### Threat Modeling - OWASP threat dragon
+https://github.com/OWASP/threat-dragon
+
+### CVSS
+https://www.first.org/cvss/calculator/3.1
+https://www.first.org/cvss/calculator/4.0
+
+### SBOM
+#### cdxgen
+https://github.com/CycloneDX/cdxgen
+
+### VEX
+#### osv scanner
+https://github.com/google/osv-scanner
+#### trivy
+https://github.com/aquasecurity/trivy
+
+### Continuous Security Monitoring
+#### dependency track
+https://dependencytrack.org/
+
+### SAST
+#### OWASP suggested SAST tools
+https://owasp.org/www-community/Source_Code_Analysis_Tools
+
+#### CodeQL supported languages
+https://codeql.github.com/docs/codeql-overview/supported-languages-and-frameworks/
+
+#### SonarQube supported languages
+https://docs.sonarsource.com/sonarqube/latest/analyzing-source-code/languages/overview/
+
+### Image Scan
+#### Docker Scout
+https://docs.docker.com/scout/quickstart/
+
+### Security frameworks:
+
+#### 5D framework
+https://owasp.org/www-project-software-security-5d-framework/
+
+#### SCVS
+https://owasp.org/www-project-software-component-verification-standard/
+#### ASVS
+https://owasp.org/www-project-application-security-verification-standard/
+
+### OWASP Vulnerable Apps:
+https://owasp.org/www-project-vulnerable-web-applications-directory/
