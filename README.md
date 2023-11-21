@@ -9,8 +9,6 @@ https://github.com/signup
 
 Per poter fruire al meglio degli strumenti che andremo ad utilizzare assieme nel corso, è altamente consigliato di avere un pc con una distrubuzione Linux, o alternativamente una VM (anche WSL di linux va bene!).
 
-<br/>
-
 ## Prerequisiti Funzionali
 
 ### Effettuare la fork del repository
@@ -19,8 +17,6 @@ Per poter agire in autonomia durante gli esercizi, abbiamo identificato come pra
 
 Di seguito gli step necessari per effettuarla una volta che avrete creato l'account GitHub:  
 https://docs.github.com/en/get-started/quickstart/fork-a-repo
-
-<br/>
 
 ### Docker Hub
 
@@ -64,58 +60,44 @@ Nel caso abbiate un IDE preferito, potete effettuare la clone della repository d
 ### Generazione chiave SSH su github
 https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent
 
-## External resources
+# Risorse esterne
 In questa sezione, i link agli strumenti e alle risorse esterne condivise durante la formazione.
 
-### Threat Modeling - OWASP threat dragon
+## Threat Modeling with OWASP threat dragon
 https://github.com/OWASP/threat-dragon
 
-### CVSS
-https://www.first.org/cvss/calculator/3.1
-https://www.first.org/cvss/calculator/4.0
+## CVSS scoring
+**CVSS 3.1** - https://www.first.org/cvss/calculator/3.1  
+**CVSS 4.0** - https://www.first.org/cvss/calculator/4.0
 
-### SBOM
-#### cdxgen
-https://github.com/CycloneDX/cdxgen
+## SBOM generation
+**cdxgen** - https://github.com/CycloneDX/cdxgen
 
-### VEX
-#### osv scanner
-https://github.com/google/osv-scanner
-#### trivy
-https://github.com/aquasecurity/trivy
+## VEX generation
+**osv scanner** - https://github.com/google/osv-scanner  
+**trivy** - https://github.com/aquasecurity/trivy
 
-### Continuous Security Monitoring
-#### dependency track
-https://dependencytrack.org/
+## Continuous Security Monitoring
+**Dependency Track** - https://dependencytrack.org/
 
-### SAST
-#### OWASP suggested SAST tools
-https://owasp.org/www-community/Source_Code_Analysis_Tools
+## SAST
+**OWASP suggested SAST tools** - https://owasp.org/www-community/Source_Code_Analysis_Tools  
+**CodeQL supported languages** - https://codeql.github.com/docs/codeql-overview/supported-languages-and-frameworks/  
+**SonarQube supported languages** - https://docs.sonarsource.com/sonarqube/latest/analyzing-source-code/languages/overview/  
 
-#### CodeQL supported languages
-https://codeql.github.com/docs/codeql-overview/supported-languages-and-frameworks/
+## Image Scan
+**Docker Scout** - https://docs.docker.com/scout/quickstart/
 
-#### SonarQube supported languages
-https://docs.sonarsource.com/sonarqube/latest/analyzing-source-code/languages/overview/
+## Security frameworks
+**5D framework** - https://owasp.org/www-project-software-security-5d-framework/  
+**SCVS** - https://owasp.org/www-project-software-component-verification-standard/  
+**ASVS** - https://owasp.org/www-project-application-security-verification-standard/
 
-### Image Scan
-#### Docker Scout
-https://docs.docker.com/scout/quickstart/
-
-### Security frameworks:
-
-#### 5D framework
-https://owasp.org/www-project-software-security-5d-framework/
-
-#### SCVS
-https://owasp.org/www-project-software-component-verification-standard/
-#### ASVS
-https://owasp.org/www-project-application-security-verification-standard/
-
-### OWASP Vulnerable Apps:
+## OWASP Vulnerable Apps
+Le applicazioni vulnerabili che abbiamo esposto in questa repository sono prese da una lista fornita da OWASP, che raccoglie e raggruppa i progetti nati per questo scopo al seguente link:  
 https://owasp.org/www-project-vulnerable-web-applications-directory/
 
 
-# Follow Us - Security News
+# Follow Us on Security News
 Restate aggiornati con le ultime news su temi di cybersecurity, effettuando la subscribe al seguente link:  
 https://davideariu.substack.com/
