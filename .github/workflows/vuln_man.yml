@@ -3,12 +3,11 @@ name: Vulnerability management workflow
 on:
   workflow_dispatch:
 
-
 jobs:
   sbom:
     name: Generate app SBOM
     runs-on: ubuntu-latest
-    container: quay.io/pluribus_one/sbom_vex_scanner:latest
+    container: ghcr.io/cyclonedx/cdxgen:v10.2.4
     # outputs:
     #   sbom: ${{ steps.sbom_app.outputs.bom }}
     strategy:
@@ -38,7 +37,7 @@ jobs:
   sbom-docker:
     name: Generate docker SBOM
     runs-on: ubuntu-latest
-    container: quay.io/pluribus_one/sbom_vex_scanner:latest
+    container: ghcr.io/cyclonedx/cdxgen:v10.2.4
     # outputs:
     #   sbom: ${{ steps.sbom_docker.outputs.bom }}
     strategy:
@@ -89,7 +88,6 @@ jobs:
         project: [ "dvna", "vulnado" ]
 
     steps:
-
       - name: Download artifact sbom
         uses: actions/download-artifact@v4
         with:
@@ -118,38 +116,43 @@ jobs:
 #cat ${{ matrix.project }}_merged_sbom.json >> "$GITHUB_OUTPUT"
 
 
-  # vex-bom:
-  #   name: Generate VEX from SBOM
-  #   needs: [ "sbom", "sbom-docker"]
-  #   runs-on: ubuntu-latest
-  #   container: quay.io/pluribus_one/sbom_vex_scanner:latest
-  #   strategy:
-  #     fail-fast: false
-  #     matrix:
-  #       project: [ "dvna", "vulnado" ]
+  vex-bom:
+    name: Generate VEX from SBOM
+    needs: [ "merge-sbom"]
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        project: [ "dvna", "vulnado" ]
 
-  #   steps:
-  #     - name: Set up Docker Buildx
-  #       uses: docker/setup-buildx-action@v3
+    steps:
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
 
-  #     - name: Generate VEXs (JSON)
-  #       uses: aquasecurity/trivy-action@master
-  #       with:
-  #         scan-type: "sbom vuln_apps/${{ matrix.project }}/${{ matrix.project }}_bom.json"
-  #         format: "cyclonedx"
-  #         output: "vuln_apps/${{ matrix.project }}/${{ matrix.project }}_vex.json"
+      - name: Download merged sbom
+        uses: actions/download-artifact@v4
+        with:
+          name: sbom-merged-${{matrix.project}}
+          path: ./sboms-${{matrix.project}}
 
-  #     - name: Generate VEXs (Human)
-  #       uses: aquasecurity/trivy-action@master
-  #       with:
-  #         scan-type: "sbom vuln_apps/${{ matrix.project }}/${{ matrix.project }}_bom.json"
-  #         format: "table"
-  #         output: "vuln_apps/${{ matrix.project }}/${{ matrix.project }}_vex_human"
+      - name: Generate VEXs (JSON)
+        uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: "sbom sboms-${{matrix.project}}/${{ matrix.project }}_merged_sbom.json"
+          format: "cyclonedx"
+          output: "${{ matrix.project }}_vex.json"
 
-  #     - name: Upload results
-  #       if: always()
-  #       uses: actions/upload-artifact@v4
-  #       with:
-  #         name: sbom-vex-jsons
-  #         path: vuln_apps/**/${{matrix.project}}_*
-  #         retention-days: 5
+      - name: Generate VEXs (Human)
+        uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: "sbom sboms-${{matrix.project}}/${{ matrix.project }}_merged_sbom.json"
+          format: 'sarif'
+          output: "${{ matrix.project }}_vex_sarif"
+
+      - name: Upload results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: sbom-vex
+          path: ${{matrix.project}}_vex*
+          retention-days: 5
