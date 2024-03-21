@@ -1,11 +1,11 @@
-name: Images scanner
+name: Images Generate Sbom
 
 on:
   workflow_dispatch:
 
 jobs:
   images-security-scan:
-    name: Images Scanner
+    name: Images Generate Sbom
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
