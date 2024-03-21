@@ -25,13 +25,13 @@ jobs:
         run: |
           cd vuln_apps/${{ matrix.prj_folder }}
           cdxgen --format json -o "${{ matrix.prj_folder }}_bom.json"
-          echo "bom=$cat ${{ matrix.prj_folder }}_bom.json" >> "$GITHUB_OUTPUT"
+          echo "bom=$(cat ${{ matrix.prj_folder }}_bom.json)" >> "$GITHUB_OUTPUT"
             
       - name: Upload results
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: sbom-vex-jsons
+          name: sbom-apps
           path: vuln_apps/${{ matrix.prj_folder }}/${{ matrix.prj_folder }}_bom.json
           retention-days: 5
 
@@ -67,12 +67,12 @@ jobs:
         id: sbom_docker
         run: |
           cdxgen --type docker -o "${{ matrix.prj_folder }}-docker_bom.json" ${{ matrix.prj_folder }}:latest
-          echo "bom=$cat(${{ matrix.prj_folder }}-docker_bom.json)"  >> "$GITHUB_OUTPUT"
+          echo "bom=$(cat ${{ matrix.prj_folder }}-docker_bom.json)"  >> "$GITHUB_OUTPUT"
       
       - name: upload Artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: image-sbom
+          name: sbom-images
           path: "{{ matrix.prj_folder }}-docker_bom.json"
           retention-days: 5
 
