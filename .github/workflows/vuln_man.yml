@@ -21,18 +21,18 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Generate SBOMs
-      # id: "sbom_app"
+        # id: "sbom_app"
         run: |
           cd vuln_apps/${{ matrix.project }}
           cdxgen --format json -o "${{ matrix.project }}_bom.json"
-# echo "bom=$(cat ${{ matrix.project }}_bom.json)" >> "$GITHUB_OUTPUT"
+        # echo "bom=$(cat ${{ matrix.project }}_bom.json)" >> "$GITHUB_OUTPUT"
             
       - name: Upload results
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: sbom-${{matrix.project}}
-          path: "**/${{ matrix.project }}_bom.json"
+          path: "vuln_apps/${{ matrix.project }}/${{ matrix.project }}_bom.json"
           retention-days: 5
 
   sbom-docker:
@@ -63,11 +63,11 @@ jobs:
           tags: ${{ matrix.project }}:latest
       
       - name: Generate docker SBOMs
-      # id: "sbom_docker"
+        # id: "sbom_docker"
         run: |
           cdxgen --type docker -o "${{ matrix.project }}-docker_bom.json" ${{ matrix.project }}:latest
           cat ${{ matrix.project }}-docker_bom.json
-# echo "bom=$(cat ${{ matrix.project }}-docker_bom.json)"  >> "$GITHUB_OUTPUT"
+        # echo "bom=$(cat ${{ matrix.project }}-docker_bom.json)"  >> "$GITHUB_OUTPUT"
       
       - name: upload Artifacts
         uses: actions/upload-artifact@v4
