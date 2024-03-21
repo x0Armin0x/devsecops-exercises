@@ -104,11 +104,7 @@ jobs:
       
       - name: Merge previously generated sboms
         # id: "merge_sbom"
-        run: |
-          ls -la sboms-${{matrix.project}}
-          cat sboms-${{matrix.project}}/${{ matrix.project }}-docker_bom.json
-          cat sboms-${{matrix.project}}/${{ matrix.project }}_bom.json
-          cyclonedx merge --input-files ${{ matrix.project }}-docker_bom.json ${{ matrix.project }}_bom.json --output-file ${{ matrix.project }}_merged_sbom.json --hierarchical --name ${{ matrix.project }}_final --version $BUILD_NUMBER 
+        run: cyclonedx merge --input-files ${{ matrix.project }}-docker_bom.json ${{ matrix.project }}_bom.json --output-file ${{ matrix.project }}_merged_sbom.json --hierarchical --name ${{ matrix.project }} --version ${{ github.run_number }}
               
       - name: upload Artifacts
         uses: actions/upload-artifact@v4
