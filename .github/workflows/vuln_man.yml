@@ -80,7 +80,7 @@ jobs:
     name: Merge VEX from SBOM
     runs-on: ubuntu-latest
     needs: [ "sbom", "sbom-docker"]
-    container: cyclonedx/cyclonedx-cli:0.25.2
+    container: cyclonedx/cyclonedx-cli:0.25.0
     outputs:
       sbom-merge: ${{ steps.merge_sbom.outputs }}
     steps:
