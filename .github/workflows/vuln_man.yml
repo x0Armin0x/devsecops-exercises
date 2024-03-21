@@ -9,8 +9,8 @@ jobs:
     name: Generate app SBOM
     runs-on: ubuntu-latest
     container: quay.io/pluribus_one/sbom_vex_scanner:latest
-    outputs:
-      sbom: ${{ steps.sbom_app.outputs.bom }}
+    # outputs:
+    #   sbom: ${{ steps.sbom_app.outputs.bom }}
     strategy:
       fail-fast: false
       matrix:
@@ -21,11 +21,11 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Generate SBOMs
-        id: sbom_app
+      # id: "sbom_app"
         run: |
           cd vuln_apps/${{ matrix.project }}
           cdxgen --format json -o "${{ matrix.project }}_bom.json"
-          echo "bom=$(cat ${{ matrix.project }}_bom.json)" >> "$GITHUB_OUTPUT"
+# echo "bom=$(cat ${{ matrix.project }}_bom.json)" >> "$GITHUB_OUTPUT"
             
       - name: Upload results
         if: always()
@@ -39,8 +39,8 @@ jobs:
     name: Generate docker SBOM
     runs-on: ubuntu-latest
     container: quay.io/pluribus_one/sbom_vex_scanner:latest
-    outputs:
-      sbom-docker: ${{ steps.sbom_app.outputs.bom }}
+    # outputs:
+    #   sbom: ${{ steps.sbom_docker.outputs.bom }}
     strategy:
       fail-fast: false
       matrix:
@@ -63,11 +63,11 @@ jobs:
           tags: ${{ matrix.project }}:latest
       
       - name: Generate docker SBOMs
-        id: sbom_docker
+      # id: "sbom_docker"
         run: |
           cdxgen --type docker -o "${{ matrix.project }}-docker_bom.json" ${{ matrix.project }}:latest
           cat ${{ matrix.project }}-docker_bom.json
-          echo "bom=$(cat ${{ matrix.project }}-docker_bom.json)"  >> "$GITHUB_OUTPUT"
+# echo "bom=$(cat ${{ matrix.project }}-docker_bom.json)"  >> "$GITHUB_OUTPUT"
       
       - name: upload Artifacts
         uses: actions/upload-artifact@v4
@@ -81,15 +81,34 @@ jobs:
     runs-on: ubuntu-latest
     needs: [ "sbom", "sbom-docker"]
     container: cyclonedx/cyclonedx-cli:0.25.0
-    outputs:
-      sbom-merge: ${{ steps.merge_sbom.outputs }}
+    # outputs:
+    #   sbom-merge: ${{ steps.merge_sbom.outputs }}
+    strategy:
+      fail-fast: false
+      matrix:
+        project: [ "dvna", "vulnado" ]
+
     steps:
+
+      - name: Download artifact sbom
+        uses: actions/download-artifact@v4
+        with:
+          name: sbom-${{matrix.project}}
+          path: ./sboms-${{matrix.project}}
+
+      - name: Download artifact sbom-docker
+        uses: actions/download-artifact@v4
+        with:
+          name: sbom-image-${{matrix.project}}
+          path: ./sboms-${{matrix.project}}
+      
       - name: Merge previously generated sboms
-        id: "sbom-merge"
-        run: |
-          echo ${{ needs.sbom.outputs.bom }} 
-          echo ${{ needs.sbom-docker.outputs.bom }}
+        # id: "merge_sbom"
+        run: 
+          cd sboms-${{matrix.project}}
           ls -la
+          cat ${{ matrix.project }}-docker_bom.json
+          cat ${{ matrix.project }}_bom.json
           
           
 #cyclonedx merge --input-files ${{ matrix.project }}-docker_bom.json vuln_apps/${{matrix.project}}/${{ matrix.project }}_bom.json --output-file ${{ matrix.project }}_merged_sbom.json --hierarchical --name ${{ matrix.project }}_final --version $BUILD_NUMBER 
