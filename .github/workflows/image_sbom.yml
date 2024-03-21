@@ -31,13 +31,13 @@ jobs:
       
       - name: Generate SBOMs
         run: |
-          cdxgen --format docker -o "${{ matrix.prj_folder }}_bom.json" local://${{ matrix.prj_folder }}:latest
+          cdxgen --format docker -o "${{ matrix.prj_folder }}_bom.json" ${{ matrix.prj_folder }}:latest
       
       - name: upload Artifacts
         uses: actions/upload-artifact@v3
         with:
           name: image-sbom
-          path: ${{matrix.prj_folder}}_*
+          path: "*_bom.json"
           retention-days: 5
 
     
