@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     container: quay.io/pluribus_one/sbom_vex_scanner:latest
     outputs:
-      sbom: ${{ steps.sbom_app.outputs }}
+      sbom: ${{ steps.sbom_app.outputs.bom }}
     strategy:
       fail-fast: false
       matrix:
@@ -32,7 +32,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: sbom-vex-jsons
-          path: vuln_apps/${{matrix.prj_folder}}/${{matrix.prj_folder}}_*
+          path: vuln_apps/${{ matrix.prj_folder }}/${{ matrix.prj_folder }}_bom.json
           retention-days: 5
 
   sbom-docker:
@@ -40,7 +40,7 @@ jobs:
     runs-on: ubuntu-latest
     container: quay.io/pluribus_one/sbom_vex_scanner:latest
     outputs:
-      sbom-docker: ${{ steps.sbom_app.outputs.test }}
+      sbom-docker: ${{ steps.sbom_app.outputs.bom }}
     strategy:
       fail-fast: false
       matrix:
