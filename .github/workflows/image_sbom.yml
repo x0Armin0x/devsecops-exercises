@@ -37,7 +37,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: image-sbom
-          path: "*_bom.json"
+          path: "{{ matrix.prj_folder }}_bom.json"
           retention-days: 5
 
     
