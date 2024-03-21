@@ -104,14 +104,19 @@ jobs:
       
       - name: Merge previously generated sboms
         # id: "merge_sbom"
-        run: 
-          cd sboms-${{matrix.project}}
-          ls -la
-          cat ${{ matrix.project }}-docker_bom.json
-          cat ${{ matrix.project }}_bom.json
-          
-          
-#cyclonedx merge --input-files ${{ matrix.project }}-docker_bom.json vuln_apps/${{matrix.project}}/${{ matrix.project }}_bom.json --output-file ${{ matrix.project }}_merged_sbom.json --hierarchical --name ${{ matrix.project }}_final --version $BUILD_NUMBER 
+        run: |
+          ls -la sboms-${{matrix.project}}
+          cat sboms-${{matrix.project}}/${{ matrix.project }}-docker_bom.json
+          cat sboms-${{matrix.project}}/${{ matrix.project }}_bom.json
+          cyclonedx merge --input-files ${{ matrix.project }}-docker_bom.json ${{ matrix.project }}_bom.json --output-file ${{ matrix.project }}_merged_sbom.json --hierarchical --name ${{ matrix.project }}_final --version $BUILD_NUMBER 
+              
+      - name: upload Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: sbom-merged-${{matrix.project}}
+          path: "sboms-${{matrix.project}}/${{ matrix.project }}_merged_sbom.json"
+          retention-days: 5
+    
 #cat ${{ matrix.project }}_merged_sbom.json >> "$GITHUB_OUTPUT"
 
 
