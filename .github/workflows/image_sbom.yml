@@ -4,9 +4,10 @@ on:
   workflow_dispatch:
 
 jobs:
-  images-security-scan:
+  image-sbom:
     name: Images Generate Sbom
     runs-on: ubuntu-latest
+    container: quay.io/pluribus_one/sbom_vex_scanner:latest
     strategy:
       fail-fast: false
       matrix:
