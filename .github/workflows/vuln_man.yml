@@ -7,7 +7,7 @@ jobs:
   sbom:
     name: Generate app SBOM
     runs-on: ubuntu-latest
-    container: ghcr.io/cyclonedx/cdxgen:v10.2.4
+    container: quay.io/pluribus_one/sbom_vex_scanner:latest
     # outputs:
     #   sbom: ${{ steps.sbom_app.outputs.bom }}
     strategy:
@@ -37,7 +37,7 @@ jobs:
   sbom-docker:
     name: Generate docker SBOM
     runs-on: ubuntu-latest
-    container: ghcr.io/cyclonedx/cdxgen:v10.2.4
+    container: quay.io/pluribus_one/sbom_vex_scanner:latest
     # outputs:
     #   sbom: ${{ steps.sbom_docker.outputs.bom }}
     strategy:
