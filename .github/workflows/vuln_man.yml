@@ -14,7 +14,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        prj_folder: [ "dvna", "vulnado" ]
+        project: [ "dvna", "vulnado" ]
 
     steps:
       - name: Checkout Repository
@@ -23,16 +23,16 @@ jobs:
       - name: Generate SBOMs
         id: sbom_app
         run: |
-          cd vuln_apps/${{ matrix.prj_folder }}
-          cdxgen --format json -o "${{ matrix.prj_folder }}_bom.json"
-          echo "bom=$(cat ${{ matrix.prj_folder }}_bom.json)" >> "$GITHUB_OUTPUT"
+          cd vuln_apps/${{ matrix.project }}
+          cdxgen --format json -o "${{ matrix.project }}_bom.json"
+          echo "bom=$(cat ${{ matrix.project }}_bom.json)" >> "$GITHUB_OUTPUT"
             
       - name: Upload results
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: sbom-apps
-          path: vuln_apps/${{ matrix.prj_folder }}/${{ matrix.prj_folder }}_bom.json
+          name: sbom-${{matrix.project}}
+          path: "**/${{ matrix.project }}_bom.json"
           retention-days: 5
 
   sbom-docker:
@@ -44,10 +44,9 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        prj_folder: [ "dvna", "vulnado" ]
+        project: [ "dvna", "vulnado" ]
 
     steps:
-
       - name: Checkout Repository
         uses: actions/checkout@v4
 
@@ -58,22 +57,23 @@ jobs:
         id: build-image
         uses: docker/build-push-action@v5
         with:
-          context: "${{ github.workspace }}/vuln_apps/${{ matrix.prj_folder }}"
+          context: "${{ github.workspace }}/vuln_apps/${{ matrix.project }}"
           push: false
           load: true
-          tags: ${{ matrix.prj_folder }}:latest
+          tags: ${{ matrix.project }}:latest
       
       - name: Generate docker SBOMs
         id: sbom_docker
         run: |
-          cdxgen --type docker -o "${{ matrix.prj_folder }}-docker_bom.json" ${{ matrix.prj_folder }}:latest
-          echo "bom=$(cat ${{ matrix.prj_folder }}-docker_bom.json)"  >> "$GITHUB_OUTPUT"
+          cdxgen --type docker -o "${{ matrix.project }}-docker_bom.json" ${{ matrix.project }}:latest
+          cat ${{ matrix.project }}-docker_bom.json
+          echo "bom=$(cat ${{ matrix.project }}-docker_bom.json)"  >> "$GITHUB_OUTPUT"
       
       - name: upload Artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: sbom-images
-          path: "{{ matrix.prj_folder }}-docker_bom.json"
+          name: sbom-image-{{matrix.project}}
+          path: "{{ matrix.project }}-docker_bom.json"
           retention-days: 5
 
   merge-sbom:
@@ -92,8 +92,8 @@ jobs:
           ls -la
           
           
-#cyclonedx merge --input-files ${{ matrix.prj_folder }}-docker_bom.json vuln_apps/${{matrix.prj_folder}}/${{ matrix.prj_folder }}_bom.json --output-file ${{ matrix.prj_folder }}_merged_sbom.json --hierarchical --name {{ matrix.prj_folder }}_final --version $BUILD_NUMBER 
-#cat ${{ matrix.prj_folder }}_merged_sbom.json >> "$GITHUB_OUTPUT"
+#cyclonedx merge --input-files ${{ matrix.project }}-docker_bom.json vuln_apps/${{matrix.project}}/${{ matrix.project }}_bom.json --output-file ${{ matrix.project }}_merged_sbom.json --hierarchical --name {{ matrix.project }}_final --version $BUILD_NUMBER 
+#cat ${{ matrix.project }}_merged_sbom.json >> "$GITHUB_OUTPUT"
 
 
   # vex-bom:
@@ -104,7 +104,7 @@ jobs:
   #   strategy:
   #     fail-fast: false
   #     matrix:
-  #       prj_folder: [ "dvna", "vulnado" ]
+  #       project: [ "dvna", "vulnado" ]
 
   #   steps:
   #     - name: Set up Docker Buildx
@@ -113,21 +113,21 @@ jobs:
   #     - name: Generate VEXs (JSON)
   #       uses: aquasecurity/trivy-action@master
   #       with:
-  #         scan-type: "sbom vuln_apps/${{ matrix.prj_folder }}/${{ matrix.prj_folder }}_bom.json"
+  #         scan-type: "sbom vuln_apps/${{ matrix.project }}/${{ matrix.project }}_bom.json"
   #         format: "cyclonedx"
-  #         output: "vuln_apps/${{ matrix.prj_folder }}/${{ matrix.prj_folder }}_vex.json"
+  #         output: "vuln_apps/${{ matrix.project }}/${{ matrix.project }}_vex.json"
 
   #     - name: Generate VEXs (Human)
   #       uses: aquasecurity/trivy-action@master
   #       with:
-  #         scan-type: "sbom vuln_apps/${{ matrix.prj_folder }}/${{ matrix.prj_folder }}_bom.json"
+  #         scan-type: "sbom vuln_apps/${{ matrix.project }}/${{ matrix.project }}_bom.json"
   #         format: "table"
-  #         output: "vuln_apps/${{ matrix.prj_folder }}/${{ matrix.prj_folder }}_vex_human"
+  #         output: "vuln_apps/${{ matrix.project }}/${{ matrix.project }}_vex_human"
 
   #     - name: Upload results
   #       if: always()
   #       uses: actions/upload-artifact@v4
   #       with:
   #         name: sbom-vex-jsons
-  #         path: vuln_apps/**/${{matrix.prj_folder}}_*
+  #         path: vuln_apps/**/${{matrix.project}}_*
   #         retention-days: 5
