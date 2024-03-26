@@ -93,7 +93,7 @@ jobs:
 
       - name: Merge previously generated sboms
         run: |
-          cyclonedx merge --input-files ${{ matrix.project }}_bom.json ${{ matrix.project }}-docker_bom.json --output-file ${{ matrix.project }}_merged_sbom.json --hierarchical --name ${{ matrix.project }}--version ${{ github.run_number }} --version ${{ github.run_number }} --group devsecops-exercises 
+          cyclonedx merge --input-files ${{ matrix.project }}_bom.json ${{ matrix.project }}-docker_bom.json --output-file ${{ matrix.project }}_merged_sbom.json --hierarchical --name ${{ matrix.project }} --version ${{ github.run_number }} --group devsecops-exercises 
 
       - name: upload Artifacts
         uses: actions/upload-artifact@v4
