@@ -65,7 +65,7 @@ jobs:
         # id: "sbom_docker"
         run: |
           cdxgen --type docker -o "${{ matrix.project }}-docker_bom.json" ${{ matrix.project }}:latest
-          cat ${{ matrix.project }}-docker_bom.json
+        # cat ${{ matrix.project }}-docker_bom.json
         # echo "bom=$(cat ${{ matrix.project }}-docker_bom.json)"  >> "$GITHUB_OUTPUT"
 
       - name: upload Artifacts
