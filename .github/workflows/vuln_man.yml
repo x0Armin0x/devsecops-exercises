@@ -29,6 +29,7 @@ jobs:
           name: sbom-${{matrix.project}}
           path: "vuln_apps/${{ matrix.project }}/${{ matrix.project }}_bom.json"
           retention-days: 5
+          if-no-files-found: error
 
   # sbom-docker:
   #   name: Generate docker SBOM
@@ -62,9 +63,10 @@ jobs:
   #     - name: upload Artifacts
   #       uses: actions/upload-artifact@v4
   #       with:
-  #         name: sbom-image-${{matrix.project}}
+  #         name: sbom-${{matrix.project}}-docker
   #         path: "/path/to/output/bom.json"
   #         retention-days: 5
+  #         if-no-files-found: error
 
   # merge-sbom:
   #   name: Merge previously generated SBOM
@@ -86,7 +88,7 @@ jobs:
   #     - name: Download artifact sbom-docker
   #       uses: actions/download-artifact@v4
   #       with:
-  #         name: sbom-image-${{matrix.project}}
+  #         name: sbom-${{matrix.project}}-docker
   #         path: ./sboms-${{matrix.project}}
 
   #     - name: Merge previously generated sboms
@@ -96,6 +98,7 @@ jobs:
   #     - name: upload Artifacts
   #       uses: actions/upload-artifact@v4
   #       with:
-  #         name: sbom-merged-${{matrix.project}}
-  #         path: "path/to/output/file.json"
+  #         name: sbom-${{matrix.project}}-merged
+  #         path: "path/to/file_out.json"
   #         retention-days: 5
+  #         if-no-files-found: error
