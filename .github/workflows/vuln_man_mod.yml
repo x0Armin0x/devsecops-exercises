@@ -72,7 +72,7 @@ jobs:
     name: Merge previously generated SBOM
     runs-on: ubuntu-latest
     needs: ["sbom", "sbom-docker"]
-    container:  cyclonedx/cyclonedx-cli:0.25.0
+    container: cyclonedx/cyclonedx-cli:0.25.0
     strategy:
       fail-fast: false
       matrix:
@@ -93,7 +93,7 @@ jobs:
 
       - name: Merge previously generated sboms
         run: |
-          cyclonedx merge --input-files sboms-${{matrix.project}}/${{ matrix.project }}_bom.json sboms-${{matrix.project}}/${{ matrix.project }}-docker_bom.json --output-file ${{ matrix.project }}_merged_sbom.json --hierarchical --name ${{ matrix.project }} --version ${{ github.run_number }} --group devsecops-exercises 
+          cyclonedx merge --input-files sboms-${{matrix.project}}/${{ matrix.project }}_bom.json sboms-${{matrix.project}}/${{ matrix.project }}-docker_bom.json --output-file ${{ matrix.project }}_merged_sbom.json --hierarchical --name ${{ matrix.project }} --version ${{ github.run_number }} --group devsecops-exercises
 
       - name: upload Artifacts
         uses: actions/upload-artifact@v4

@@ -33,6 +33,7 @@ jobs:
           name: sbom-${{matrix.project}}
           path: "vuln_apps/${{ matrix.project }}/${{ matrix.project }}_bom.json"
           retention-days: 5
+          if-no-files-found: error
 
   sbom-docker:
     name: Generate docker SBOM
@@ -71,9 +72,10 @@ jobs:
       - name: upload Artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: sbom-image-${{matrix.project}}
-          path: "${{ matrix.project }}-docker_bom.json"
+          name: sbom-${{matrix.project}}-docker
+          path: ${{ matrix.project }}-docker_bom.json
           retention-days: 5
+          if-no-files-found: error
 
   merge-sbom:
     name: Merge previously generated SBOM
@@ -97,18 +99,18 @@ jobs:
       - name: Download artifact sbom-docker
         uses: actions/download-artifact@v4
         with:
-          name: sbom-image-${{matrix.project}}
+          name: sbom-${{matrix.project}}-docker
           path: ./sboms-${{matrix.project}}
 
       - name: Merge previously generated sboms
         # id: "merge_sbom"
         run: |
-          cd sboms-${{matrix.project}}
-          cyclonedx merge --input-files ${{ matrix.project }}-docker_bom.json ${{ matrix.project }}_bom.json --output-file ${{ matrix.project }}_merged_sbom.json --hierarchical --name ${{ matrix.project }} --version ${{ github.run_number }}
+          cyclonedx merge --input-files sboms-${{matrix.project}}/${{ matrix.project }}_bom.json sboms-${{matrix.project}}/${{ matrix.project }}-docker_bom.json --output-file ${{ matrix.project }}_merged_sbom.json --hierarchical --name ${{ matrix.project }} --version ${{ github.run_number }} --group devsecops-exercises
 
       - name: upload Artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: sbom-merged-${{matrix.project}}
-          path: "sboms-${{matrix.project}}/${{ matrix.project }}_merged_sbom.json"
+          name: sbom-${{matrix.project}}-merged
+          path: ${{ matrix.project }}_merged_sbom.json
           retention-days: 5
+          if-no-files-found: error
