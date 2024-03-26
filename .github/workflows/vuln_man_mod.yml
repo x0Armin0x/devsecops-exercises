@@ -98,7 +98,7 @@ jobs:
       - name: upload Artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: sbom-merged-${{matrix.project}}
+          name: sbom-${{matrix.project}}-merged
           path: ${{ matrix.project }}_merged_sbom.json
           retention-days: 5
           if-no-files-found: error
