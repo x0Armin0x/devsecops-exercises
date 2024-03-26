@@ -64,37 +64,38 @@ jobs:
   #       with:
   #         name: sbom-image-${{matrix.project}}
   #         path: "/path/to/output/bom.json"
+  #         retention-days: 5
 
-  merge-sbom:
-    name: Merge previously generated SBOM
-    runs-on: ubuntu-latest
-    needs: ["sbom", "sbom-docker"]
-    container: cyclonedx/container:tag
-    strategy:
-      fail-fast: false
-      matrix:
-        project: ["dvna", "vulnado"]
+  # merge-sbom:
+  #   name: Merge previously generated SBOM
+  #   runs-on: ubuntu-latest
+  #   needs: ["sbom", "sbom-docker"]
+  #   container: cyclonedx/container:tag
+  #   strategy:
+  #     fail-fast: false
+  #     matrix:
+  #       project: ["dvna", "vulnado"]
 
-    steps:
-      - name: Download artifact sbom
-        uses: actions/download-artifact@v4
-        with:
-          name: sbom-${{matrix.project}}
-          path: ./sboms-${{matrix.project}}
+  #   steps:
+  #     - name: Download artifact sbom
+  #       uses: actions/download-artifact@v4
+  #       with:
+  #         name: sbom-${{matrix.project}}
+  #         path: ./sboms-${{matrix.project}}
 
-      - name: Download artifact sbom-docker
-        uses: actions/download-artifact@v4
-        with:
-          name: sbom-image-${{matrix.project}}
-          path: ./sboms-${{matrix.project}}
+  #     - name: Download artifact sbom-docker
+  #       uses: actions/download-artifact@v4
+  #       with:
+  #         name: sbom-image-${{matrix.project}}
+  #         path: ./sboms-${{matrix.project}}
 
-      - name: Merge previously generated sboms
-        run: |
-          cyclonedx merge --input-files file_in_1.json file_in_2.json --output-file file_out.json --hierarchical --name ${{ matrix.project }} --version ${{ github.run_number }}
+  #     - name: Merge previously generated sboms
+  #       run: |
+  #         cyclonedx merge --input-files sboms-${{matrix.project}}/file_in_1.json sboms-${{matrix.project}}/file_in_2.json --output-file file_out.json --hierarchical --name ${{ matrix.project }} --version ${{ github.run_number }}
 
-      - name: upload Artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: sbom-merged-${{matrix.project}}
-          path: "path/to/output/file.json"
-          retention-days: 5
+  #     - name: upload Artifacts
+  #       uses: actions/upload-artifact@v4
+  #       with:
+  #         name: sbom-merged-${{matrix.project}}
+  #         path: "path/to/output/file.json"
+  #         retention-days: 5
