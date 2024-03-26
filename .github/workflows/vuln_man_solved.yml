@@ -1,4 +1,4 @@
-name: SBOM generation
+name: SBOM generation final
 
 on:
   workflow_dispatch:
