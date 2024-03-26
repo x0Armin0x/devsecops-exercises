@@ -63,7 +63,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: sbom-image-${{matrix.project}}
-          path: "/path/to/output/bom.json"
+          path: "${{ matrix.project }}-docker_bom.json"
           retention-days: 5
 
   # merge-sbom:
