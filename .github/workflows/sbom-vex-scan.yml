@@ -35,7 +35,7 @@ jobs:
           --format json \
           --spec-version="${{matrix.cdx_spec_version}}" \
           --project-name="${{ matrix.project }}" \
-          --project-version="${{ github.run_number }}" \
+          --project-version="build-${{ github.run_number }}" \
           -o "${{ matrix.project }}_bom.json"
 
       - name: Generate VEXs (JSON)
