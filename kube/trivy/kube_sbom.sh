@@ -26,7 +26,7 @@ docker run --rm \
 #scan sbom for vulnerabilities
 docker run --rm \
     -it \
-    -v "$HOME"/.kube/config-dso-admin:/root/.kube/config \
+    -v "$HOME"/.kube/config-dso-user:/root/.kube/config \
     -v "$HOME"/Library/Caches:/root/.cache/ \
     -v ./sboms:/sboms \
     -e TRIVY_DB_REPOSITORY="$TRIVY_DB" \
