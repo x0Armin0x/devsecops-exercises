@@ -130,3 +130,4 @@ dist
 .pnp.*
 
 kube/trivy/sboms
+vuln_apps/sboms

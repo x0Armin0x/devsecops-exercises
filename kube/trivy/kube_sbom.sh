@@ -32,5 +32,7 @@ docker run --rm \
     -e TRIVY_DB_REPOSITORY="$TRIVY_DB" \
     -e TRIVY_JAVA_DB_REPOSITORY="$TRIVY_DB_JAVA" \
     --add-host k8scp-dso:"$CLUSTER_IP" \
-    aquasec/trivy sbom /sboms/mykbom.cdx.json \
+    aquasec/trivy sbom \
+    -f json \
+    /sboms/mykbom.cdx.json \
     -o /sboms/mykbom.cdx.vex.json
