@@ -29,7 +29,6 @@ https://hub.docker.com/signup
 Una volta creato l'account sarà possibile generare un access token, questo è effettuabile seguendo gli step al seguente link:  
 https://docs.docker.com/security/for-developers/access-tokens/
 
-
 #### Forked Repo docker hub permissions
 
 Una volta eseguito lo step *Docker Hub* dovete effettuare l'inserimento delle credenziali docker appena generate (**username** + **access token**) sulla repository di cui avete effettuato il fork.
@@ -59,6 +58,12 @@ Nel caso abbiate un IDE preferito, potete effettuare la clone della repository d
 
 ### Generazione chiave SSH su github
 https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent
+
+### Pull immagini Docker
+Per velocizzare la fruzione dei contenuti, scaricate le seguenti immagini sulla vostra workstation nei giorni precedenti all'inizio del corso:
+- `docker pull aquasec/trivy`
+- `docker pull zaproxy/zap-stable:2.15.0`
+- `docker pull appsecco/dvna:sqlite`
 
 # Risorse esterne
 In questa sezione, i link agli strumenti e alle risorse esterne condivise durante la formazione.
