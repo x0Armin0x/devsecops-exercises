@@ -7,18 +7,21 @@ TRIVY_JAVA_DB=${TRIVY_JAVA_DB:-ghcr.io/aquasecurity/trivy-java-db,public.ecr.aws
 CLUSTER_IP=$1
 
 if [ -z "$CLUSTER_IP" ]; then
-        echo 'Missing mandatory cluster ip argument' >&2
-        exit 1
+    echo 'Missing mandatory cluster ip argument' >&2
+    exit 1
 fi
 
 namespaces=dso-apps
 resources=deployment,pods
 report_type=summary # or all
 
+mkdir -p "$HOME"/Library/Caches
+
+# start scanning k8s cluster @ provided ip
 docker run --rm \
     -it \
-    -v "$HOME"/.kube/config-dso-user:/root/.kube/config \
-    -v "$HOME"/Library/Caches:/root/.cache/ \
+    -v "$HOME"/.kube/config-dso-user:/root/.kube/config:z \
+    -v "$HOME"/Library/Caches:/root/.cache/:z \
     -e TRIVY_DB_REPOSITORY="$TRIVY_DB" \
     -e TRIVY_JAVA_DB_REPOSITORY="$TRIVY_DB_JAVA" \
     --add-host k8scp-dso:"$CLUSTER_IP" \
