@@ -59,8 +59,15 @@ Nel caso abbiate un IDE preferito, potete effettuare la clone della repository d
 ### Generazione chiave SSH su github
 https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent
 
-### Pull immagini Docker
-Per velocizzare la fruzione dei contenuti, scaricate le seguenti immagini sulla vostra workstation nei giorni precedenti all'inizio del corso:
+### Installazione Docker e pull immagini
+
+Alcuni degli esercizi che svolgeremo durante il corso prevedono l'utilizzo di un software di containerizzazione. Per la sua popolarità e documentazione consigliamo l'utilizzo docker, ma si adattano allo scopo le alternative equivalenti podman e containerd.  
+
+Per utilizzarlo, troverete al seguente indirizzo le istruzioni di installazione specifiche per il sistema operativo Linux che utilizzerete durante il corso:  
+https://docs.docker.com/engine/install/  
+
+
+Per velocizzare la fruzione dei contenuti, scaricate inoltre le seguenti immagini sulla vostra workstation nei giorni precedenti all'inizio del corso:
 - `docker pull aquasec/trivy`
 - `docker pull zaproxy/zap-stable:2.15.0`
 - `docker pull appsecco/dvna:sqlite`

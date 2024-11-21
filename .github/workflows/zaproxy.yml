@@ -3,7 +3,6 @@ name: Site scanner
 on:
   workflow_dispatch:
 
-
 jobs:
   DAST-scan:
     name: DAST site scanner
