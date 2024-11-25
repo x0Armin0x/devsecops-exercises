@@ -113,6 +113,7 @@ https://github.com/OWASP/threat-dragon
 ## Security frameworks
 **5D framework** - https://owasp.org/www-project-software-security-5d-framework/  
 **SCVS** - https://owasp.org/www-project-software-component-verification-standard/  
+**SCVS JSON** - https://github.com/OWASP/Software-Component-Verification-Standard/releases/download/1.0/OWASP_SCVS-1.0.json  
 **ASVS** - https://owasp.org/www-project-application-security-verification-standard/
 
 ## OWASP Vulnerable Apps
