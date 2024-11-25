@@ -5,6 +5,7 @@ Questa repository nasce per raccogliere gli esercizi e per fornire le istruzioni
 ## Prerequisiti Base 
 Per poter effettuare le operazioni richieste negli esercizi è necessario avere un account GitHub (è free):  
 https://github.com/signup
+
 **Ricordatevi di portare con voi il PC ed il caricabatterie!**
 
 Per poter fruire al meglio degli strumenti che andremo ad utilizzare assieme nel corso, è altamente consigliato di avere un pc con una distrubuzione Linux, o alternativamente una VM (anche WSL di linux va bene!).
@@ -61,13 +62,13 @@ https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generati
 
 ### Installazione Docker e pull immagini
 
-Alcuni degli esercizi che svolgeremo durante il corso prevedono l'utilizzo di un software di containerizzazione. Per la sua popolarità e documentazione consigliamo l'utilizzo docker, ma si adattano allo scopo le alternative equivalenti podman e containerd.  
+Alcuni degli esercizi che svolgeremo durante il corso prevedono l'utilizzo di un software di containerizzazione. Per la sua popolarità e documentazione consigliamo l'utilizzo di **docker**, ma si adattano allo scopo le alternative equivalenti **podman** e **containerd**.  
 
-Per utilizzarlo, troverete al seguente indirizzo le istruzioni di installazione specifiche per il sistema operativo Linux che utilizzerete durante il corso:  
+Per utilizzare **docker**, troverete al seguente indirizzo le istruzioni di installazione specifiche per il sistema operativo Linux che utilizzerete durante il corso:  
 https://docs.docker.com/engine/install/  
 
 
-Per velocizzare la fruzione dei contenuti, scaricate inoltre le seguenti immagini sulla vostra workstation nei giorni precedenti all'inizio del corso:
+Per velocizzare la fruzione dei contenuti, una volta installato **docker**, scaricate le seguenti immagini sulla vostra workstation nei giorni precedenti all'inizio del corso:
 - `docker pull aquasec/trivy`
 - `docker pull zaproxy/zap-stable:2.15.0`
 - `docker pull appsecco/dvna:sqlite`
@@ -99,6 +100,12 @@ https://github.com/OWASP/threat-dragon
 **OWASP suggested SAST tools** - https://owasp.org/www-community/Source_Code_Analysis_Tools  
 **CodeQL supported languages** - https://codeql.github.com/docs/codeql-overview/supported-languages-and-frameworks/  
 **SonarQube supported languages** - https://docs.sonarsource.com/sonarqube/latest/analyzing-source-code/languages/overview/  
+
+## DAST
+**ZAP GitHub Action** - https://github.com/marketplace/actions/zap-full-scan  
+**ZAProxy (CheckMarx)** - https://www.zaproxy.org/download  
+**BurpSuite (PortSwigger)** - https://portswigger.net/burp/communitydownload  
+**Nuclei (ProjectDiscovery)** - https://projectdiscovery.io/nuclei
 
 ## Image Scan
 **Docker Scout** - https://docs.docker.com/scout/quickstart/
