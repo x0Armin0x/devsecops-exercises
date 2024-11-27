@@ -10,7 +10,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        port: [31547]
+        port: [31546, 31547]
 
     steps:
       - name: ZAP Scan
