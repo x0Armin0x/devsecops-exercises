@@ -6,7 +6,7 @@ Questa repository nasce per raccogliere gli esercizi e per fornire le istruzioni
 Per poter effettuare le operazioni richieste negli esercizi è necessario avere un account GitHub (è free):  
 https://github.com/signup
 
-**Ricordatevi di portare con voi il PC ed il caricabatterie!**
+**Nel caso di erogazione del corso in presenza, ricordatevi di portare con voi il PC ed il caricabatterie!**
 
 Per poter fruire al meglio degli strumenti che andremo ad utilizzare assieme nel corso, è altamente consigliato di avere un pc con una distrubuzione Linux, o alternativamente una VM (anche WSL di linux va bene!).
 
