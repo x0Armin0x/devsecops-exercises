@@ -93,6 +93,9 @@ services:
     #
     # Optional environmental variables to provide more JVM arguments to the API Server JVM, i.e. "-XX:ActiveProcessorCount=8"
     # - EXTRA_JAVA_OPTIONS=
+    #
+    # Optional environment to skip container resources requirements checks
+    # - SYSTEM_REQUIREMENT_CHECK_ENABLED=false
     deploy:
       resources:
         limits:
