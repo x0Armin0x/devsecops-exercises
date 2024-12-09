@@ -81,9 +81,9 @@ jobs:
           --type docker
           --format json
           --spec-version="1.5"
-          --project-name="${{ project }}"
+          --project-name="${{ matrix.project }}"
           --project-version="build-${{ github.run_number }}"
-          -o "${{ project }}-docker_bom.json"
+          -o "${{ matrix.project }}-docker_bom.json"
           image:tag
 
       - name: upload Artifacts
